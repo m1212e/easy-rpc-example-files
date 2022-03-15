@@ -1,0 +1,8 @@
+/**
+    A web browser client which consumes this API
+*/
+role client
+/**
+    A server providing various endpoints for the client
+*/
+role server

@@ -1,0 +1,48 @@
+/**
+    A request to delete items
+*/
+type DeleteRequest {
+    /**
+        Delete items older than this timestamp
+    */
+    olderThan int64
+
+    /**
+        Delete items which are identical
+    */
+    doubles boolean
+
+    /**
+        Wipe items which were soft deleted
+    */
+    wipeSoftDeletedItems boolean
+
+    /**
+        Delete items which match these ids
+    */
+    ids string[]
+}
+
+/**
+    Provides information about the deletion process
+*/
+type DeleteResult {
+    /**
+        If the process failed
+    */
+    failed boolean
+    /**
+        In error message in case of an error or an empty string on sucess
+    */
+    errorMessage string
+    /**
+        The amount of deleted items
+    */
+    amount int
+}
+
+
+/**
+    Requests the deletion of items
+*/
+server delete(request DeleteRequest) DeleteResult

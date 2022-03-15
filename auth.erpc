@@ -1,0 +1,35 @@
+/**
+    A user which should be created
+*/
+type CreateUser {
+    email string
+    password string[]
+    nickname string[20]
+}
+
+/**
+    Result of the user creation
+*/
+type CreateUserResult {
+    result "userAlreadyExists" | "nicknameAlreadyTaken" | "insecurePassword" | "createdSuccessfully"
+}
+
+/**
+    Register a new user at the server
+*/
+server register(user CreateUser) CreateUserResult
+
+/**
+    Login via email and password
+*/
+server login(email string, password string) "success" | "invalidPassword"
+
+/**
+ * Checks if the user is logged in and returns true if that is the case, false otherwise
+ */
+server isLoggedIn() boolean
+
+/**
+    Sends a password reset email to the user, if the user exists
+*/
+server resetPassword(email string) "success" | "userNptFound"

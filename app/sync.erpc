@@ -1,0 +1,37 @@
+type Item {
+    id string
+
+    /**
+        The timestamp this item was created at
+    */
+    createdAt int64
+
+    /**
+        Notes related to this item
+    */
+    notes string
+
+    /**
+        If this item is softdeleted
+    */
+    deleted boolean
+}
+
+/**
+    Result of an item fetch
+*/
+type FetchResult {
+    items Item[]
+    errored boolean
+    error string
+}
+
+/**
+    Returns all items
+*/
+server fetchAllItems() FetchResult
+
+/**
+    Returns all items which were created after a certian timestamp
+*/
+server fetchAllItemsAfter(timestamp int64) FetchResult
